@@ -77,13 +77,13 @@ export default function App() {
     );
   };
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (showdownTeamText.trim().length === 0) return;
 
     const parsedTeam = getShowdownTeam(showdownTeamText, generationNum);
     if (!parsedTeam) return; 
 
-    const vgcTeam = getVGCTeam(parsedTeam, generationNum, "champions");
+    const vgcTeam = await getVGCTeam(parsedTeam, generationNum, "champions");
 
     if (vgcTeam) {
       generatePDF(
